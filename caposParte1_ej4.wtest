@@ -1,0 +1,13 @@
+import capos.*
+
+describe "consultar historia"{
+    test "ronaldo tiene la mochila llena, despues vuelve a recoger un artfacto"{
+        rolando.encontrar(espada)
+        rolando.encontrar(libro)
+        rolando.encontrar(collar)
+        rolando.llegarACasa()
+        rolando.encontrar(armadura)
+        rolando.encontrar(collar)
+        assert.equals([espada,libro,collar,armadura,collar], rolando.encuentros())
+    }
+}
