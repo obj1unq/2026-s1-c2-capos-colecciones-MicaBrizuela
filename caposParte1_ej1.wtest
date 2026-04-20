@@ -2,7 +2,19 @@
 import capos.*
 
 describe "Rolando"{
-    test "recoleccion"{
+    test "rolando puede agarrar un artifacto"{
+        rolando.encontrar(espada)
+        assert.equals(1, rolando.mochila().size())
+        assert.that(rolando.mochila().contains(espada))
+    }
+
+    test "rolando no puede agarrrar un artefacto"{
+        rolando.capacidad(0)
+        rolando.encontrar(espada)
+        assert.that(rolando.mochila().isEmpty())
+        assert.that(!rolando.mochila().contains(espada))
+    }
+    test "caso ejemplo en consigna"{
         rolando.encontrar(espada)
         rolando.encontrar(libro)
         rolando.encontrar(collar)

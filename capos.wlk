@@ -61,13 +61,14 @@ object rolando {
 //tipo artifacto
 
 object espada{
-   var usado = false
+   const usado = false
 
    method usar(personaje) {
       if (usado) {
          return personaje.poderBase()/2
       }
       else {
+         usado.negate()
          return personaje.poderBase()
       }
    }

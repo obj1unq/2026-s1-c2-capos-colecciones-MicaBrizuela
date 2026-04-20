@@ -1,7 +1,18 @@
 import capos.*
 
 describe "consultar historia"{
-    test "ronaldo tiene la mochila llena, despues vuelve a recoger un artfacto"{
+    test "agarro un artefacto, se registra"{
+        rolando.encontrar(espada)
+        assert.equals([espada], rolando.encuentros())
+    }
+
+    test "no puedo agarrar artfacto, se registra"{
+        rolando.capacidad(0)
+        assert.that(rolando.encuentros().isEmpty())
+    }
+
+
+    test "caso ejempplo de consigna"{
         rolando.encontrar(espada)
         rolando.encontrar(libro)
         rolando.encontrar(collar)
