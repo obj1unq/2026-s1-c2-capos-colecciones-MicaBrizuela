@@ -1,0 +1,15 @@
+// caposParte1_ej1.wtest
+import capos.*
+
+describe "Rolando"{
+    test "recoleccion"{
+        rolando.encontrar(espada)
+        rolando.encontrar(libro)
+        rolando.encontrar(collar)
+        assert.equals(2, rolando.mochila().size())
+        assert.that(rolando.mochila().contains(espada))
+        assert.that(rolando.mochila().contains(libro))
+        assert.that(!rolando.mochila().contains(collar))
+        assert.equals(2, rolando.capacidad())
+    }
+}
