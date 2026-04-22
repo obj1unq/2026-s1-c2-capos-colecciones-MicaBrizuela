@@ -2,6 +2,8 @@
 // capos.wlk
 // capos.wlk
 // capos.wlk
+
+//tipo personaje
 object rolando {
    var capacidad = 2
    const mochila = #{}
@@ -60,6 +62,13 @@ object rolando {
       return self.posesiones().contains(elem)
    }
 
+   method enemigosQuePuedeVencer(mundo){
+      return mundo.enemigos().filter({enemigo => enemigo.poderDePelea() < self.poderDePelea()})
+   }
+
+   method moradasConquistables(mundo){
+      return self.enemigosQuePuedeVencer(mundo).map({enemigo => enemigo.morada()})
+   }
 
 }
 
@@ -141,7 +150,6 @@ const artefactos = #{}
       return artefactos.max({artefacto => artefacto.poderDePelea(personaje)})
    }
 }
-
 //Tipo hechizo
 
 object bendicion{
@@ -162,4 +170,31 @@ object invocacion {
    method poder(personaje){
       return personaje.casa().artefactoMasPoderoso(personaje).poderDePelea(personaje)
    }
+}
+
+//tipo mundo
+
+object erethia{
+   const property enemigos = [caterina, archibaldo, astra]
+
+   method añadirEnemigos(conjunto) {
+      enemigos.addAll(conjunto)
+   }
+}
+
+//Tipo enemigo
+
+object caterina{
+   const property poderDePelea = 28
+   const property morada = "fortaleza"
+}
+
+object archibaldo{
+   const property poderDePelea = 16
+   const property morada = "palacio"
+}
+
+object astra{
+   const property poderDePelea = 14
+   const property morada = "torre"
 }
