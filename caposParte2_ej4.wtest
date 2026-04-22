@@ -1,0 +1,15 @@
+import capos.*
+
+describe "enemigos"{
+    method initialize(){
+        assert.equals(5, rolando.poderBase())
+        rolando.capacidad(3)
+        rolando.encontrar(espada)
+        rolando.encontrar(armadura)
+        rolando.encontrar(collar)
+    }
+
+    test "rolando tiene pode de 19, no vence a todos"{
+        assert.notThat(rolando.esPoderoso(erethia))
+    }
+}
