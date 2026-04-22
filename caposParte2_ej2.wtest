@@ -1,0 +1,23 @@
+import capos.*
+
+describe "libro de hechizos"{
+    method initialize(){
+        assert.equals(5, rolando.poderBase())
+        rolando.capacidad(3)
+        rolando.encontrar(espada)
+        rolando.encontrar(armadura)
+        rolando.encontrar(collar)
+        rolando.llegarACasa()
+        libro.agregarHechizos([bendicion,invisibilidad,invocacion])
+        rolando.encontrar(libro)
+    }
+    test "en batalla"{
+        assert.equals(4, libro.poderDePelea(rolando))
+        rolando.batalla() //1
+        assert.equals(6, libro.poderDePelea(rolando))
+        rolando.batalla() //2
+        assert.equals(7, libro.poderDePelea(rolando))
+        rolando.batalla() //3
+        assert.equals(0, libro.poderDePelea(rolando))
+    }
+}
