@@ -1,0 +1,25 @@
+import capos.*
+
+describe "Preguntar que artefactos tiene en el castillo rolando"{
+    method initialize(){
+        rolando.encontrar(collar)
+        rolando.encontrar(espada)
+        rolando.llegarACasa()
+        rolando.encontrar(armadura)
+    }
+    
+    test "pregunta por un libro, pero no lo tiene"{
+        assert.notThat(rolando.posee(libro))
+    }
+    test "pregunta que elementos posee"{
+        assert.equals(3, rolando.posesiones().size())
+        assert.that(rolando.posee(collar))
+        assert.that(rolando.posee(espada))
+        assert.that(rolando.posee(armadura))
+    }
+
+    test "pregunta por todas la posesiones, las des castillo y de rolando"{
+        rolando.encontrar(libro)
+        assert.equals(#{libro, espada, collar, armadura}, rolando.posesiones())
+    }
+}

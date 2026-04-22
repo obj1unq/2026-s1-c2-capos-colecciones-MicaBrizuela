@@ -1,0 +1,20 @@
+import capos.*
+
+describe "enemigos"{
+    method initialize(){
+        rolando.poderBase(15)
+        assert.equals(15, rolando.poderBase())
+        rolando.capacidad(3)
+        rolando.encontrar(espada)
+        rolando.encontrar(armadura)
+        rolando.encontrar(collar)
+    }
+
+    test "rolando tiene espada fatal para astra"{
+        assert.that(rolando.tieneArtefactoFatal(astra))
+    }
+
+    test "rolando no tiene fatal para caterina"{
+        assert.notThat(rolando.tieneArtefactoFatal(caterina))
+    }
+}
