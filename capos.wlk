@@ -81,11 +81,21 @@ object libro{
    const hechizos = []
 
    method usar(personaje){
-
+      if (!hechizos.isEmpty()) {
+         hechizos.remove(hechizos.head())
+      }
    }
 
    method poderDePelea(personaje){
+      return if (hechizos.isEmpty()) {0} else {hechizos.head().poder(personaje)}
+   }
 
+   method agregarHechizos(lista){
+      hechizos.addAll(lista)
+   }
+
+   method hechizos(){
+      return hechizos
    }
 }
 
@@ -113,7 +123,7 @@ object collar {
    }
 }
 
-//Tipo lugar
+//Tipo casa
 
 object castillo {
 const artefactos = #{}
@@ -125,5 +135,31 @@ const artefactos = #{}
 
    method registrarNuevosArtefactos(conjunto){
       artefactos.addAll(conjunto)
+   }
+
+   method artefactoMasPoderoso(personaje){
+      return artefactos.max({artefacto => artefacto.poderDePelea(personaje)})
+   }
+}
+
+//Tipo hechizo
+
+object bendicion{
+   const poderBase = 4
+   method poder(personaje){
+      return poderBase
+   }
+}
+
+object invisibilidad {
+
+   method poder(personaje){
+      return personaje.poderBase()
+   }
+}
+
+object invocacion {
+   method poder(personaje){
+      return personaje.casa().artefactoMasPoderoso(personaje).poderDePelea(personaje)
    }
 }
