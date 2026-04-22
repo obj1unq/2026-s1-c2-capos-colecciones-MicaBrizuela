@@ -70,6 +70,10 @@ object rolando {
       return self.enemigosQuePuedeVencer(mundo).map({enemigo => enemigo.morada()})
    }
 
+   method esPoderoso(mundo){
+      return mundo.enemigos().all({enemigo => enemigo.poderDePelea() < self.poderDePelea()})
+   }
+
 }
 
 //tipo artifacto
