@@ -13,6 +13,10 @@ object rolando {
 
    method poderBase() = poderBase
 
+   method poderBase(_cantidad) {
+     poderBase = _cantidad
+   }
+
    method poderDePelea(){
       return poderBase + mochila.sum({artefacto => artefacto.poderDePelea(self)})
    }
@@ -72,6 +76,14 @@ object rolando {
 
    method esPoderoso(mundo){
       return mundo.enemigos().all({enemigo => enemigo.poderDePelea() < self.poderDePelea()})
+   }
+
+   method tieneArtefactoFatal(enemigo){
+      return self.mochila().any({artefacto => artefacto.poderDePelea() > enemigo.poderDePelea()})
+   }
+
+   method artefactoFatal(enemigo){
+      return self.mochila().find({artefacto => artefacto.poderDePelea() > enemigo.poderDePelea()})
    }
 
 }
