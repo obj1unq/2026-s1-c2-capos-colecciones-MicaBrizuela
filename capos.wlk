@@ -75,15 +75,15 @@ object rolando {
    }
 
    method esPoderoso(mundo){
-      return mundo.enemigos().all({enemigo => enemigo.poderDePelea() < self.poderDePelea()})
+      return mundo.enemigos().all({enemigo => enemigo.poderDePelea(self) < self.poderDePelea()})
    }
 
    method tieneArtefactoFatal(enemigo){
-      return self.mochila().any({artefacto => artefacto.poderDePelea() > enemigo.poderDePelea()})
+      return self.mochila().any({artefacto => artefacto.poderDePelea(self) > enemigo.poderDePelea()})
    }
 
    method artefactoFatal(enemigo){
-      return self.mochila().find({artefacto => artefacto.poderDePelea() > enemigo.poderDePelea()})
+      return self.mochila().find({artefacto => artefacto.poderDePelea(self) > enemigo.poderDePelea()})
    }
 
 }
