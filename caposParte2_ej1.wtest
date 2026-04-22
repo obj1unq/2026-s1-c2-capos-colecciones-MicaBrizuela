@@ -1,0 +1,35 @@
+import capos.*
+describe "comportamiento de artefactos" {
+    method initialize(){
+        assert.equals(5, rolando.poderBase())
+        rolando.capacidad(3)
+        rolando.encontrar(espada)
+        rolando.encontrar(armadura)
+        rolando.encontrar(collar)
+        assert.equals(5, espada.poderDePelea(rolando))
+        assert.equals(6, armadura.poderDePelea(rolando))
+        assert.equals(3, collar.poderDePelea(rolando))
+    }
+    test "calculo de poder de pelea"{
+        assert.equals(19, rolando.poderDePelea())
+    }
+
+    test "batallas"{
+        rolando.batalla()
+        assert.equals(6, rolando.poderBase())
+        assert.equals(3, espada.poderDePelea(rolando))
+        assert.equals(6, armadura.poderDePelea(rolando))
+        rolando.batalla()
+        assert.equals(7, rolando.poderBase())
+        assert.equals(3.5, espada.poderDePelea(rolando))
+        assert.equals(6, armadura.poderDePelea(rolando))
+        assert.equals(5, collar.poderDePelea(rolando))
+        rolando.batalla()
+        assert.equals(8, rolando.poderBase())
+        assert.equals(4, espada.poderDePelea(rolando))
+        assert.equals(6, armadura.poderDePelea(rolando))
+        assert.equals(6, collar.poderDePelea(rolando))
+
+    }
+    
+}
