@@ -7,12 +7,17 @@ object rolando {
    const mochila = #{}
    var property casa = castillo
    const encuentros = []
-   const poderBase = 5
+   var poderBase = 5
 
    method poderBase() = poderBase
 
-   method poderPelea(){
-      return 0
+   method poderDePelea(){
+      return poderBase + mochila.sum({artefacto => artefacto.poderDePelea(self)})
+   }
+
+   method batalla(){
+      mochila.forEach({artefacto => artefacto.usar(self)})
+      poderBase += 1
    }
 
    method encontrar(artefacto) {
@@ -61,34 +66,50 @@ object rolando {
 //tipo artifacto
 
 object espada{
-   const usado = false
+   var esPrimerUso = true
 
    method usar(personaje) {
-      if (usado) {
-         return personaje.poderBase()/2
-      }
-      else {
-         usado.negate()
-         return personaje.poderBase()
-      }
+      esPrimerUso = false
+   }
+
+   method poderDePelea(personaje){
+      return if (esPrimerUso) { personaje.poderBase() } else {personaje.poderBase()/2}
    }
 }
 
 object libro{
+   const hechizos = []
 
+   method usar(personaje){
+
+   }
+
+   method poderDePelea(personaje){
+
+   }
 }
 
 object armadura {
+   const poderBase = 6
+
+   method usar(personaje){}
+
+   method poderDePelea(personaje){
+      return poderBase
+   }
+
 }
 
 object collar {
-   var batalla = 0
+   var cantidadDeUsosEnBatalla = 0
+   const poderBase = 3
+
    method usar(personaje){
-      if (personaje.poderBase() > 6) {
-         return 3 + batalla
-      }
-      batalla += 1
-      return 3
+      cantidadDeUsosEnBatalla += 1
+   }
+
+   method poderDePelea(personaje){
+      return poderBase + if (personaje.poderBase() > 6){ cantidadDeUsosEnBatalla } else {0}
    }
 }
 
