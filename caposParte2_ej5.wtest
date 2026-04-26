@@ -1,0 +1,23 @@
+// caposParte2_ej5.wtest
+import capos.*
+
+describe "enemigos"{
+    method initialize(){
+        rolando.poderBase(15)
+        assert.equals(15, rolando.poderBase())
+        rolando.capacidad(3)
+        rolando.encontrar(espada) //poder 15 sin usar
+        rolando.encontrar(armadura) //poder 6
+        rolando.encontrar(collar)   //poder 3 sin batallas
+    }
+
+    test "rolando tiene espada fatal (poderArtefacto > 14) para astra"{
+        assert.that(rolando.tieneArtefactoFatal(astra))
+        assert.equals(espada, rolando.artefactoFatal(astra))
+    }
+
+    test "rolando no tiene ningun fatal (poderDeArtefacto < 28) para caterina"{
+        assert.notThat(rolando.tieneArtefactoFatal(caterina))
+        assert.throwsException({ rolando.artefactoFatal(caterina) })
+    }
+}

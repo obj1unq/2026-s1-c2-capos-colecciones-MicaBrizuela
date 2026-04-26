@@ -1,0 +1,75 @@
+// caposParte2_ej2.wtest
+// caposParte2_ej2.wtest
+// caposParte2_ej2.wtest
+import capos.*
+
+describe "comportamiento de libros de hechizos" {
+    method initialize(){
+        libro.agregarHechizos([bendicion, invisibilidad,invisibilidad,invisibilidad])
+    }
+    test "se puede agregar hechizos"{
+        assert.that(!libro.hechizos().isEmpty())
+    }
+  test "se usa un hechizo y se descarta" {
+    libro.usar(rolando)
+    assert.equals(3, libro.hechizos().size())
+  }
+
+  test "los hechizos se usan de forma ordenada"{
+    libro.usar(rolando)
+    assert.that(!libro.hechizos().contains(bendicion))
+  }
+}
+
+describe "aporte de hechizos" {
+  test "aporte de bendicion poderBase + 4" {
+    rolando.poderBase(0)
+    libro.agregarHechizos([bendicion])
+    assert.equals(4, libro.poderDePelea(rolando))
+  }
+
+  test "aporte de invisibilidad poderBase = libro"{
+    rolando.poderBase(0)
+    libro.agregarHechizos([invisibilidad])
+    assert.equals(rolando.poderBase(), libro.poderDePelea(rolando))
+  }
+
+  test "aporte de invocacion poderDePeleaDeArtefactoMasPoderosoEnCasaDePersonaje = libro"{
+    rolando.poderBase(0)
+    rolando.encontrar(armadura)
+    rolando.llegarACasa()
+    libro.agregarHechizos([invocacion])
+    assert.equals(6, libro.poderDePelea(rolando))
+  }
+
+  test "aporte de libro sin hechizos"{
+    rolando.poderBase(100)
+    libro.agregarHechizos([])
+    assert.equals(0, libro.poderDePelea(rolando))
+  }
+
+
+}
+
+
+describe "libro de hechizos caso ejemplo"{
+    method initialize(){
+        assert.equals(5, rolando.poderBase())
+        rolando.capacidad(3)
+        rolando.encontrar(espada)
+        rolando.encontrar(armadura)
+        rolando.encontrar(collar)
+        rolando.llegarACasa()
+        libro.agregarHechizos([bendicion,invisibilidad,invocacion])
+        rolando.encontrar(libro)
+    }
+    test "en batalla"{
+        assert.equals(4, libro.poderDePelea(rolando))
+        rolando.batalla() //1
+        assert.equals(6, libro.poderDePelea(rolando))
+        rolando.batalla() //2
+        assert.equals(7, libro.poderDePelea(rolando))
+        rolando.batalla() //3
+        assert.equals(0, libro.poderDePelea(rolando))
+    }
+}

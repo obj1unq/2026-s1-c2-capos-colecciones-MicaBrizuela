@@ -1,0 +1,29 @@
+import capos.*
+
+describe "rolando guarda artifactos en el castillo"{
+    test "rolando tiene mochila vacia, llega a su hogar" {
+        assert.that(rolando.mochila().isEmpty())
+        rolando.llegarACasa()
+        assert.that(castillo.artefactosAlmacenados().isEmpty())
+    }
+
+    test "rolando deposita sus artefactos en su casa"{
+        rolando.encontrar(espada)
+        rolando.llegarACasa()
+        assert.equals(1, castillo.artefactosAlmacenados().size())
+        assert.that(castillo.artefactosAlmacenados().contains(espada))
+    }
+    test "caso ejemplo en consignas"{
+        rolando.encontrar(espada)
+        rolando.encontrar(libro)
+        rolando.llegarACasa()
+        assert.that(rolando.mochila().isEmpty())
+        assert.that(castillo.artefactosAlmacenados().contains(espada))
+        assert.that(castillo.artefactosAlmacenados().contains(libro))
+        rolando.encontrar(collar)
+        rolando.llegarACasa()
+        assert.that(rolando.mochila().isEmpty())
+        assert.that(castillo.artefactosAlmacenados().contains(collar))
+        assert.equals(3, castillo.artefactosAlmacenados().size())
+    }
+}
