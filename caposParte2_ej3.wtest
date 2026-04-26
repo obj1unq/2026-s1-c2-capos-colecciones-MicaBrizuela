@@ -117,7 +117,7 @@ describe "enemigos caso de con enemigos que puede vencer y moradas"{
         rolando.encontrar(collar)
     }
 
-    test "rolando tiene pode de 19 vence a archivaldo y astra"{
+    test "rolando tiene poder de 19 vence a archivaldo y astra"{
         assert.equals(19, rolando.poderDePelea())
         assert.equals(rolando.enemigosQuePuedeVencer(erethia), #{astra,archibaldo})
         assert.that(rolando.moradasConquistables(erethia).contains("palacio")) //moradasConquistables da lista a partir de un conjunto
