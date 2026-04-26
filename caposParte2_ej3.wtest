@@ -1,6 +1,114 @@
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
+// caposParte2_ej3.wtest
 import capos.*
 
-describe "enemigos"{
+describe "comportamiento enemigos incial" {
+    const enemigos = #{caterina,archibaldo,astra}
+  test "erethia conoce a todos los enemigos" {
+    assert.equals(erethia.enemigos(), enemigos)
+  }
+
+  test "informacion de caterina"{
+    assert.equals(28, caterina.poderDePelea())
+    assert.equals('fortaleza', caterina.morada())
+  }
+
+    test "informacion de archibaldo"{
+    assert.equals(16, archibaldo.poderDePelea())
+    assert.equals('palacio', archibaldo.morada())
+  }
+
+    test "informacion de astra"{
+    assert.equals(14, astra.poderDePelea())
+    assert.equals('torre', astra.morada())
+  }
+}
+
+describe "rolando enemigos que puede vencer" {
+    const cantidadDeEnemigosEnMundo = erethia.enemigos().size()
+  test "rolando puede vencer a astra" {
+    rolando.poderBase(15)
+    assert.equals(rolando.enemigosQuePuedeVencer(erethia), #{astra})
+  }
+
+    test "rolando NO puede vencer a astra" {
+    rolando.poderBase(14)
+    assert.that(rolando.enemigosQuePuedeVencer(erethia).isEmpty())
+  }
+
+    test "rolando puede vencer a archivaldo y astra" {
+    rolando.poderBase(17)
+    assert.equals(rolando.enemigosQuePuedeVencer(erethia), #{archibaldo,astra})
+  }
+
+    test "rolando NO puede vencer a archivaldo, pero si a astra" {
+    rolando.poderBase(16)
+    assert.notEquals(rolando.enemigosQuePuedeVencer(erethia),#{archibaldo,astra})
+  }
+
+    test "rolando puede vencer a caterina, archibaldo y astra" {
+    rolando.poderBase(29)
+    assert.equals(rolando.enemigosQuePuedeVencer(erethia), #{archibaldo,astra,caterina})
+  }
+
+      test "rolando NO puede vencer a caterina" {
+    rolando.poderBase(28)
+    assert.notEquals(rolando.enemigosQuePuedeVencer(erethia), #{archibaldo,astra,caterina})
+  }
+
+  test "rolando es tan poderoso que puede conquistar todas las moradas de todos los enemigos"{
+    rolando.poderBase(30)
+    assert.equals(cantidadDeEnemigosEnMundo, rolando.moradasConquistables(erethia).size())
+    assert.that(rolando.moradasConquistables(erethia).contains("palacio"))  //moradasConquistables da lista a partir de un conjunto
+    assert.that(rolando.moradasConquistables(erethia).contains("torre"))
+    assert.that(rolando.moradasConquistables(erethia).contains("fortaleza"))
+  }
+
+  test "rolando NO puede conquistar todas las moradas de todos los enemigos"{
+    rolando.poderBase(14)
+    assert.that(rolando.moradasConquistables(erethia).isEmpty())
+  }
+}
+
+describe "enemigos caso de con enemigos que puede vencer y moradas"{
     method initialize(){
         assert.equals(5, rolando.poderBase())
         rolando.capacidad(3)
@@ -11,8 +119,10 @@ describe "enemigos"{
 
     test "rolando tiene pode de 19 vence a archivaldo y astra"{
         assert.equals(19, rolando.poderDePelea())
-        assert.equals([archibaldo,astra], rolando.enemigosQuePuedeVencer(erethia))
-        assert.equals(["palacio","torre"], rolando.moradasConquistables(erethia))
+        assert.equals(rolando.enemigosQuePuedeVencer(erethia), #{astra,archibaldo})
+        assert.that(rolando.moradasConquistables(erethia).contains("palacio")) //moradasConquistables da lista a partir de un conjunto
+        assert.that(rolando.moradasConquistables(erethia).contains("torre"))
+        assert.equals(2, rolando.moradasConquistables(erethia).size())
     }
 }
 

@@ -1,3 +1,4 @@
+// caposParte2_ej4.wtest
 import capos.*
 
 describe "enemigos"{
@@ -9,7 +10,12 @@ describe "enemigos"{
         rolando.encontrar(collar)
     }
 
-    test "rolando tiene pode de 19, no vence a todos"{
+    test "rolando tiene poder de pelea = 19, no vence a todos"{
         assert.notThat(rolando.esPoderoso(erethia))
+    }
+
+    test "rolando tiene poder de pelea = 29, vence a todos"{
+        rolando.poderBase(10)
+        assert.that(rolando.esPoderoso(erethia))
     }
 }

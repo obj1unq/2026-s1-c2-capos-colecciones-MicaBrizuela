@@ -2,6 +2,7 @@
 // capos.wlk
 // capos.wlk
 // capos.wlk
+// capos.wlk
 
 //tipo personaje
 object rolando {
@@ -70,12 +71,12 @@ object rolando {
       return mundo.enemigos().filter({enemigo => enemigo.poderDePelea() < self.poderDePelea()})
    }
 
-   method moradasConquistables(mundo){
+   method moradasConquistables(mundo){  //Entrega un lista a partir del conjunto de enemigos (map)
       return self.enemigosQuePuedeVencer(mundo).map({enemigo => enemigo.morada()})
    }
 
    method esPoderoso(mundo){
-      return mundo.enemigos().all({enemigo => enemigo.poderDePelea(self) < self.poderDePelea()})
+      return mundo.enemigos().all({enemigo => enemigo.poderDePelea() < self.poderDePelea()})
    }
 
    method tieneArtefactoFatal(enemigo){
@@ -191,7 +192,7 @@ object invocacion {
 //tipo mundo
 
 object erethia{
-   const property enemigos = [caterina, archibaldo, astra]
+   const property enemigos = #{caterina, archibaldo, astra}
 
    method añadirEnemigos(conjunto) {
       enemigos.addAll(conjunto)

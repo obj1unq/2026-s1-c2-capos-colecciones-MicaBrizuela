@@ -11,8 +11,7 @@ describe "consultar historia"{
         assert.that(rolando.encuentros().isEmpty())
     }
 
-
-    test "caso ejempplo de consigna"{
+    test "caso ejemplo de consigna"{
         rolando.encontrar(espada)
         rolando.encontrar(libro)
         rolando.encontrar(collar)
