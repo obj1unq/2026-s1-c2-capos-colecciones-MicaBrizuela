@@ -83,7 +83,7 @@ object rolando {
       return self.mochila().any({artefacto => artefacto.poderDePelea(self) > enemigo.poderDePelea()})
    }
 
-   method artefactoFatal(enemigo){
+   method artefactoFatal(enemigo){ //falla si no hay artefacto fatal
       return self.mochila().find({artefacto => artefacto.poderDePelea(self) > enemigo.poderDePelea()})
    }
 

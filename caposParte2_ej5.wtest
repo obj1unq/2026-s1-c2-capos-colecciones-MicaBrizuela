@@ -1,3 +1,4 @@
+// caposParte2_ej5.wtest
 import capos.*
 
 describe "enemigos"{
@@ -12,9 +13,11 @@ describe "enemigos"{
 
     test "rolando tiene espada fatal (poderArtefacto > 14) para astra"{
         assert.that(rolando.tieneArtefactoFatal(astra))
+        assert.equals(espada, rolando.artefactoFatal(astra))
     }
 
     test "rolando no tiene ningun fatal (poderDeArtefacto < 28) para caterina"{
         assert.notThat(rolando.tieneArtefactoFatal(caterina))
+        assert.throwsException({ rolando.artefactoFatal(caterina) })
     }
 }
